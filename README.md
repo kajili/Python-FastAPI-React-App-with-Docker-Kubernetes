@@ -45,6 +45,10 @@ uvicorn main:app --reload
 #### React
 
 ### Through `Docker`
+- FastAPI Server:
+```
+docker run -d --name fastapi-server -p 5000:5000 fastapi-image
+```
 
 ### Through `Helm` on Microk8s (or MiniKube)
 
