@@ -36,7 +36,11 @@ My repository for an app created using Python with FastAPI, connected to a simpl
 
 ### Direct Run
 
-#### Python
+#### Python FastAPI Server
+- Run this command in the terminal within the python_code directory:
+```
+uvicorn main:app --reload
+```
 
 #### React
 
