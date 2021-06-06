@@ -47,7 +47,7 @@ uvicorn main:app --reload
 ### Through `Docker`
 - FastAPI Server:
 ```
-docker run -d --name fastapi-server -p 5000:5000 fastapi-image
+docker run -d --name fastapi-server -p 5000:5000 kevinajili/fastapi-dog-facts
 ```
 
 ### Through `Helm` on Microk8s (or MiniKube)
