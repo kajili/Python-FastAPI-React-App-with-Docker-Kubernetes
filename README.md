@@ -37,9 +37,19 @@ My repository for an app created using Python with FastAPI, connected to a simpl
 ### Direct Run
 
 #### Python FastAPI Server
-- Run this command in the terminal within the python_code directory:
+- Go to `python_code` directory
 ```
-uvicorn main:app --reload
+cd python_code
+```
+- Create a Python virtual environment and activate it. Then install requirements from `python_code/requirements.txt`.
+```
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
+- Run this command in the terminal within the `python_code` directory:
+```
+uvicorn app.main:app --reload
 ```
 
 #### React
