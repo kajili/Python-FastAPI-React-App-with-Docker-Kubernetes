@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from functions import get_dog_facts_data
+from app.functions import get_dog_facts_data
 
 app = FastAPI()
 
