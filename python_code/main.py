@@ -1,21 +1,15 @@
-# from fastapi import FastAPI
+from fastapi import FastAPI
 
-# app = FastAPI()
+from functions import get_dog_facts_data
 
-
-# @app.get("/")
-# async def root():
-#     return {"message": "Hello World"}
-
-import requests
-
-def get_dog_facts_data():
-    response = requests.get("https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=10")
-
-    if response.ok:
-        return response.json()
-    else:
-        return {"error": "API Request failed"}
+app = FastAPI()
 
 
-print(get_dog_facts_data())
+@app.get("/")
+async def root():
+    return {"message": "Go to the /dogs endpoint for dog facts!"}
+
+
+@app.get("/dogs")
+async def dogs_endpoint():
+    return get_dog_facts_data()
