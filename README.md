@@ -51,6 +51,12 @@ pip3 install -r requirements.txt
 ```
 uvicorn app.main:app --reload
 ```
+- Usage:
+```
+Go to:
+localhost:5000/docs
+to see the available endpoints!
+```
 
 #### React
 
@@ -58,6 +64,12 @@ uvicorn app.main:app --reload
 - FastAPI Server:
 ```
 docker run -d --name fastapi-server -p 5000:5000 kevinajili/fastapi-dog-facts
+```
+- Usage:
+```
+Go to:
+localhost:5000/docs
+to see the available endpoints!
 ```
 
 ### Through `Helm` on Microk8s (or MiniKube)
