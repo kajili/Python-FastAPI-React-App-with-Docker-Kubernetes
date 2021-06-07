@@ -37,40 +37,72 @@ My repository for an app created using Python with FastAPI, connected to a simpl
 ### Direct Run
 
 #### Python FastAPI Server
+
 - Go to `python_code` directory
+
 ```
 cd python_code
 ```
+
 - Create a Python virtual environment and activate it. Then install requirements from `python_code/requirements.txt`.
+
 ```
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 ```
+
 - Run this command in the terminal within the `python_code` directory:
+
 ```
 uvicorn app.main:app --reload
 ```
+
 - Usage:
+
 ```
 Go to:
 localhost:5000/docs
 to see the available endpoints!
 ```
 
-#### React
+#### React App
+
+- Go to `react_code` directory
+
+```
+cd react_code
+```
+
+- Have `Node.js` and `npm` installed and then run `npm install` within `react_code` directory
+
+```
+npm install
+```
+
+- Start the React server using `npm start`
+
+```
+npm start
+```
 
 ### Through `Docker`
-- FastAPI Server:
+
+#### Python FastAPI Server:
+
 ```
 docker run -d --name fastapi-server -p 5000:5000 kevinajili/fastapi-dog-facts
 ```
+
 - Usage:
+
 ```
 Go to:
 localhost:5000/docs
 to see the available endpoints!
 ```
+
+#### React App
 
 ### Through `Helm` on Microk8s (or MiniKube)
 
