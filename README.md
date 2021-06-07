@@ -28,9 +28,9 @@ My repository for an app created using Python with FastAPI, connected to a simpl
 
    1. Confirm that this Docker container runs properly, and is able to properly access our `FastAPI` Docker container and display the data correctly.
 
-7. Once both `Docker` images have been created and are able to be used together as separate `Docker` images, create a `Helm` chart that will allow both of our `Docker` images to be deployed into a local `Kubernetes` cluster.
+7. Once both `Docker` images have been created and are able to be used together as separate `Docker` images, create a `deployment.yaml` file that will allow both of our `Docker` images to be deployed into a local `Kubernetes` cluster.
 
-   1. In this case will be using `Microk8s` to deploy the `Helm` chart in `Kubernetes`, however it should be able to be deployed through `MiniKube` or any other `Kubernetes` environment.
+   1. In this case will be using `Microk8s` to deploy the `deployment.yaml` chart in `Kubernetes`, however it should be able to be deployed through `MiniKube` or any other `Kubernetes` environment.
 
 ## Running the Code
 
@@ -148,13 +148,51 @@ http://localhost:3000
 docker kill fastapi-dog-facts-server react-app-dog-facts
 ```
 
-### Through `Helm` on Microk8s (or MiniKube)
+### Through `kubectl` on Microk8s (or MiniKube)
+
+- Run this command in the root folder to deploy the deployments and services:
+
+```
+kubectl apply -f deployment.yaml
+```
+
+- Access the services by loading the IP addresses after the services are deployed from the above command.
+
+```
+kubectl get all
+```
+
+- Launch `FastAPI Server` from Kubernetes
+  - Find and copy the `CLUSTER-IP` Address of the `fastapi-service` and go to that URL + port 5000
+
+```
+http://<CLUSTER-IP_of_service/fastapi-service>:5000/docs
+```
+
+- Launch `React UI` from Kubernetes
+  - Find and copy the `CLUSTER-IP` Address of the `ui` service and go to that URL + port 3000
+
+```
+http://<CLUSTER-IP_of_service/ui>:3000
+```
+
+- Teardown the cluster using this command:
+
+```
+kubectl delete -f deployment.yaml
+```
 
 ## Difficulties with Assignment and Overcoming Them
 
 - One of the main difficulities of this assignment is actually getting the Docker containers to communicate with each other because the React docker container is trying to access `localhost:5000/dogs` to get information from the FastAPI server, but they are on different networks within the Docker Containers.
 
   - I will solve this by using a Docker Network.
+  - The Docker image was created using a different proxy to connect to the FastAPI docker container's DNS name internally, and for local deployment the proxy in package.json was kept as `localhost` so that it can be run directly.
 
 - Another difficulty is getting the two Docker containers to run together within Kubernetes
-  - I will be working through solving this using research, testing, and Helm to orchestrate the containers into Kubernetes.
+
+  - I will be working through solving this using research and testing to orchestrate the containers into Kubernetes.
+  - I had to create a separate Docker image for the kubernetes deployment of the react UI, because it needed to point to the internal network `fastapi-service`. But this worked as a solution.
+    - This was similar to what I did to get the Docker containers to connect to each other.
+
+- Overall I had a lot of fun working on this project, and I feel a huge sense of accomplishment getting each part of it working, and even deployed through Docker directly, and Kubernetes as well.
