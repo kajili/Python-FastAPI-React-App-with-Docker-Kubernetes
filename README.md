@@ -37,41 +37,128 @@ My repository for an app created using Python with FastAPI, connected to a simpl
 ### Direct Run
 
 #### Python FastAPI Server
+
 - Go to `python_code` directory
+
 ```
 cd python_code
 ```
+
 - Create a Python virtual environment and activate it. Then install requirements from `python_code/requirements.txt`.
+
 ```
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 ```
+
 - Run this command in the terminal within the `python_code` directory:
+
 ```
-uvicorn app.main:app --reload
-```
-- Usage:
-```
-Go to:
-localhost:5000/docs
-to see the available endpoints!
+uvicorn app.main:app --host 0.0.0.0 --port 5000 --reload
 ```
 
-#### React
+- **Usage**:
+  - Go to this URL to see the available endpoints!
+
+```
+http://localhost:5000/docs
+```
+
+#### React App
+
+- Go to `react_code` directory
+
+```
+cd react_code
+```
+
+- Have `Node.js` and `npm` installed and then run `npm install` within `react_code` directory
+
+```
+npm install
+```
+
+- Start the React server using `npm start`
+
+```
+npm start
+```
+
+- **Usage**:
+  - Go to this URL to see the React App running!
+
+```
+http://localhost:3000
+```
 
 ### Through `Docker`
-- FastAPI Server:
+
+- First set up the Docker Network so the containers can speak with each other:
+
 ```
-docker run -d --name fastapi-server -p 5000:5000 kevinajili/fastapi-dog-facts
+docker network create fastapi_react_network
 ```
-- Usage:
+
+- Then run the below Docker container commands using that network. The Docker images will be pulled automatically from Docker Hub.
+
+#### Python FastAPI Server:
+
 ```
-Go to:
-localhost:5000/docs
-to see the available endpoints!
+docker run \
+-d \
+--rm \
+--name fastapi-dog-facts-server \
+-p 5000:5000 \
+--network fastapi_react_network \
+kevinajili/fastapi-dog-facts
+```
+
+- **Usage**:
+  - Go to this URL to see the available endpoints!
+
+```
+http://localhost:5000/docs
+```
+
+#### React App
+
+```
+docker run \
+-itd \
+--rm \
+--name react-app-dog-facts \
+-v /app/node_modules \
+-p 3000:3000 \
+-e CHOKIDAR_USEPOLLING=true \
+--network fastapi_react_network \
+kevinajili/react-app-dog-facts
+```
+
+- **Usage**:
+  - Go to this URL to see the React App running!
+
+```
+http://localhost:3000
+```
+
+- Teardown both Docker containers:
+
+```
+docker kill fastapi-dog-facts-server react-app-dog-facts
 ```
 
 ### Through `Helm` on Microk8s (or MiniKube)
 
 ## Difficulties with Assignment and Overcoming Them
+
+- One of the main difficulities of this assignment is actually getting the Docker containers to communicate with each other because the React docker container is trying to access `localhost:5000/dogs` to get information from the FastAPI server, but they are on different networks within the Docker Containers.
+
+  - I will solve this by using a Docker Network.
+
+- Another difficulty is getting the two Docker containers to run together within Kubernetes
+  - I will be working through solving this using research, testing, and Helm to orchestrate the containers into Kubernetes.
+
+```
+
+```
