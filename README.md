@@ -142,12 +142,23 @@ kevinajili/react-app-dog-facts
 http://localhost:3000
 ```
 
+- Teardown both Docker containers:
+
+```
+docker kill fastapi-dog-facts-server react-app-dog-facts
+```
+
 ### Through `Helm` on Microk8s (or MiniKube)
 
 ## Difficulties with Assignment and Overcoming Them
 
 - One of the main difficulities of this assignment is actually getting the Docker containers to communicate with each other because the React docker container is trying to access `localhost:5000/dogs` to get information from the FastAPI server, but they are on different networks within the Docker Containers.
+
   - I will solve this by using a Docker Network.
 
 - Another difficulty is getting the two Docker containers to run together within Kubernetes
-  - I will be working through solving this using research, testing, and Helm to orchestrate the containers into Kubernetes. 
+  - I will be working through solving this using research, testing, and Helm to orchestrate the containers into Kubernetes.
+
+```
+
+```
