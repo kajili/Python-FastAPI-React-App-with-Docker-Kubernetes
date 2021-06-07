@@ -100,7 +100,7 @@ http://localhost:3000
 docker network create fastapi_react_network
 ```
 
-- Then run the below Docker container commands using that network.
+- Then run the below Docker container commands using that network. The Docker images will be pulled automatically from Docker Hub.
 
 #### Python FastAPI Server:
 
