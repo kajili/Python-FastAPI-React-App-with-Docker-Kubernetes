@@ -158,7 +158,3 @@ docker kill fastapi-dog-facts-server react-app-dog-facts
 
 - Another difficulty is getting the two Docker containers to run together within Kubernetes
   - I will be working through solving this using research, testing, and Helm to orchestrate the containers into Kubernetes.
-
-```
-
-```
