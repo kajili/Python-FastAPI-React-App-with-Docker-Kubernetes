@@ -125,7 +125,7 @@ http://localhost:5000/docs
 
 ```
 docker run \
--it \
+-itd \
 --rm \
 --name react-app-dog-facts \
 -v /app/node_modules \
