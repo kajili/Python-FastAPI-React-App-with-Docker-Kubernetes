@@ -55,7 +55,7 @@ pip3 install -r requirements.txt
 - Run this command in the terminal within the `python_code` directory:
 
 ```
-uvicorn app.main:app --reload
+uvicorn app.main:app --host 0.0.0.0 --port 5000 --reload
 ```
 
 - **Usage**:
