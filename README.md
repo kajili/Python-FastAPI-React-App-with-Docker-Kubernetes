@@ -58,12 +58,11 @@ pip3 install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-- Usage:
+- **Usage**:
+  - Go to this URL to see the available endpoints!
 
 ```
-Go to:
-localhost:5000/docs
-to see the available endpoints!
+http://localhost:5000/docs
 ```
 
 #### React App
@@ -86,6 +85,13 @@ npm install
 npm start
 ```
 
+- **Usage**:
+  - Go to this URL to see the React App running!
+
+```
+http://localhost:3000
+```
+
 ### Through `Docker`
 
 #### Python FastAPI Server:
@@ -94,12 +100,11 @@ npm start
 docker run -d --name fastapi-server -p 5000:5000 kevinajili/fastapi-dog-facts
 ```
 
-- Usage:
+- **Usage**:
+  - Go to this URL to see the available endpoints!
 
 ```
-Go to:
-localhost:5000/docs
-to see the available endpoints!
+http://localhost:5000/docs
 ```
 
 #### React App
@@ -107,3 +112,7 @@ to see the available endpoints!
 ### Through `Helm` on Microk8s (or MiniKube)
 
 ## Difficulties with Assignment and Overcoming Them
+
+```
+
+```
